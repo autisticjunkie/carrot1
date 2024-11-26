@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { NextPage } from 'next'
 
 const carrotResponses = {
   "greeting": {
@@ -62,7 +63,7 @@ interface CarrotChatProps {
   receiveSoundUrl?: string;
 }
 
-export default function CarrotChat({ sendSoundUrl, receiveSoundUrl }: CarrotChatProps) {
+const CarrotChat: NextPage<CarrotChatProps> = ({ sendSoundUrl, receiveSoundUrl }) => {
   const [messages, setMessages] = useState<{ text: string; sender: 'user' | 'carrot' }[]>([])
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(true)
@@ -190,4 +191,10 @@ export default function CarrotChat({ sendSoundUrl, receiveSoundUrl }: CarrotChat
     </div>
   )
 }
+
+const Page: NextPage = () => {
+  return <CarrotChat />;
+}
+
+export default Page;
 
